@@ -70,7 +70,7 @@ This repository is organized into the following folders:
   The final written report summarizing the full project, results, and conclusions.
 
 - **`README.md`**  
-  This file. Describes the project, team contributions, repository layout, and submission requirements.
+  This file. Provides a summary of the project and explains the structure of the repository.
 
 
 ---
