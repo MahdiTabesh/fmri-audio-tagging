@@ -1,32 +1,81 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Yd55b8hB)
 # E6691 Spring 2025: Final Project
 
-## TODO: Your Project Title
+## Project Title: Comparing Audio Tagging Models with fMRI Data
 
-## Project Instructions
-For general requiremenets, refer to the [project instruction document](https://docs.google.com/document/d/1P7VZtfaIjJR0Gm_ZN4hK1RR1phwguEgL/edit?usp=sharing&ouid=116178570597880819841&rtpof=true&sd=true).
-Please read the project instructions carefully. 
+This project investigates how well state-of-the-art audio and multimodal models can predict human brain activity during natural audiovisual experiences. Using group-averaged fMRI data collected while subjects watched a 1-hour movie, we evaluate multiple pretrained models—including BEATs, CLIP, and CAV-MAE—as sources of feature representations for voxel-wise encoding. We aim to determine which model best explains brain responses, which brain regions align with audio vs. visual features, and how encoding accuracy varies with model layer and stimulus delay.
 
 
-## TODO: This repository is to be used for final project development and documentation by a group of students
-  - Students must have at least one main Jupyter Notebook, and a number of python files in a number of directories and subdirectories such as `utils` or similar, as demonstrated in the assignment 2.
-  - The content of this `README.md` should be changed to describe the actual project. You can remove the project instructions etc.
-  - Provide a discription of the organization of this repository. The organization of the directories has to be meaningful.
+---
+
+## Summary of Models Used
+- **BEATs:** Transformer-based audio tagging model; produces 768-d audio embeddings and class tag probabilities.
+- **CLIP:** Vision transformer (ViT-B/32) used to extract 768-d visual embeddings from movie frames.
+- **CAV-MAE:** Joint audio-visual encoder producing 768-d fused representations.
+- **BEATs+CLIP:** Concatenated 1536-d vector of audio and visual features for each 1-second stimulus window.
+
+---
+
+## Key Contributions
+- Trained voxel-wise linear encoding models using audio-only, visual-only, fused, and concatenated multimodal features.
+- Demonstrated that CLIP best predicts activity in visual cortex; BEATs in auditory cortex; and BEATs+CLIP best overall.
+- Found that a ~4s delay between stimulus and brain response yielded peak model performance, matching hemodynamic lag.
+- Performed layer-wise analysis, revealing that mid-to-late layers align better with brain activity in sensory regions.
+- Compared models both globally and within auditory/visual brain masks.
 
 
-## Detailed instructions how to submit this project:
-1. The assignment will be distributed as a Github classroom assignment - as a special repository accessed through a link
-2. A student's copy of the assignment gets created automatically with a special name.
-3. **Students must rename the repository per the instructions below**.
-4. If some model is too large to be uploaded to Github - 1) create a Google (liondrive) directory; 2) upload the model and grant access to e6040tas@columbia.edu; 3) attach the link in the report and this `README.md`.
-4. Upload your final report as a PDF in the root of this Github repository.
-5. Also submit the report as a PDF in Courseworks.
-6. All contents must be submitted to Gradescope for final grading by uploading your GitHub repo, similar to how you did it in the assignments.
-7. **Make sure your changes are properly pushed to Github, including the exported PDF files**. Always open the repository webpage and check if you could see your modifications. **We will not do any regrades for incomplete submissions beyond what you have submitted. Furthermore, we will only grade based on your latest submission to Gradescope. Any submission before the latest one will not be considered.**
-8. After submitting, make sure that all members have been added to the Gradescope group. You can do this by either clicking "View or edit group" at the top-right of your submission or "Group Members" at the bottom of your submission.
+---
+
+## References
+1. [BEATs GitHub](https://github.com/microsoft/BEATs)  
+2. [CLIP GitHub](https://github.com/openai/CLIP)  
+3. [CAV-MAE GitHub](https://github.com/YuanGongND/cav-mae)  
+4. [Final Project Repository](https://github.com/ecbme6040/e6691-2025spring-project-smab-af3410-sed2195-mt3846)
+
+---
+## Team Information
+
+- **Group ID:** SMAB  
+- **Members:**
+  - sed2195 — Sude Demir
+  - sed2195 — Mahdi Tabesh
+  - af3410 — Arsalan Firoozi
+
+---
+## Repository Organization
+
+This repository is organized into the following folders:
+
+- **`data/`**  
+  Contains precomputed feature matrices used for fMRI encoding:
+  - `cavmae_av_embeddings.mat`: Audiovisual embeddings from CAV-MAE
+  - `vision_clip_features.mat`: Visual frame-level features from CLIP
+  - `features_per_sec.mat`: BEATs-based audio tag probabilities per second
+
+- **`notebooks/`**  
+  Contains all major Jupyter notebooks for feature extraction and brain encoding:
+  - `beats.ipynb`: Audio tag prediction using BEATs
+  - `clip.ipynb`: Visual feature extraction using CLIP
+  - `cavmae_av_feature_extraction.ipynb`: Audio-visual embedding extraction using CAV-MAE
+  - `Brain_CLIP_BEATS.ipynb`: Linear encoding with concatenated CLIP+BEATs features
+  - `Brain_CLIP_BEATS_Delay.ipynb`: Delay analysis with shifted feature windows
+  - `Brain_AudioVisual.ipynb`: Encoding using fused audiovisual features (CAV-MAE)
+  - `fMRI_Encoding_LinearRidge.ipynb`: General encoding evaluation and correlation analysis
+
+- **`surfaces/`**  
+  Contains cortical surface `.gii` files with voxel-wise encoding results:
+  - `r_values.LH.func.gii`, `r_values.RH.func.gii`: Correlation maps for CLIP+BEATs model
+  - `r_values_audioVisual.LH.func.gii`, `r_values_audioVisual.RH.func.gii`: Correlation maps for CAV-MAE model
+
+- **`Final_Report.pdf`**  
+  The final written report summarizing the full project, results, and conclusions.
+
+- **`README.md`**  
+  This file. Describes the project, team contributions, repository layout, and submission requirements.
 
 
-## TODO: (Re)naming of a project repository shared by multiple students
-Students must use a 4-letter groupID, the same one that was chosen in the class spreadsheet in Google Drive: 
-* Template: `e6691-2025spring-project-GroupID-UNI1-UNI2-UNI3`
-* Example: `e6691-2025spring-project-MEME-zz9999-aa9999-aa0000`
+---
+
+
+
+
+
