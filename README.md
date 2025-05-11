@@ -37,7 +37,7 @@ This project investigates how well state-of-the-art audio and multimodal models 
 - **Group ID:** SMAB  
 - **Members:**
   - sed2195 — Sude Demir
-  - sed2195 — Mahdi Tabesh
+  - mt3846 — Mahdi Tabesh
   - af3410 — Arsalan Firoozi
 
 ---
