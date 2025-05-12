@@ -19,7 +19,6 @@ This project investigates how well state-of-the-art audio and multimodal models 
 - Trained voxel-wise linear encoding models using audio-only, visual-only, fused, and concatenated multimodal features.
 - Demonstrated that CLIP best predicts activity in visual cortex; BEATs in auditory cortex; and BEATs+CLIP best overall.
 - Found that a ~4s delay between stimulus and brain response yielded peak model performance, matching hemodynamic lag.
-- Performed layer-wise analysis, revealing that mid-to-late layers align better with brain activity in sensory regions.
 - Compared models both globally and within auditory/visual brain masks.
 
 
@@ -46,24 +45,30 @@ This project investigates how well state-of-the-art audio and multimodal models 
 This repository is organized into the following folders:
 
 - **`data/`**  
-  Contains precomputed feature matrices used for fMRI encoding:
-  - `cavmae_av_embeddings.mat`: Audiovisual embeddings from CAV-MAE
-  - `vision_clip_features.mat`: Visual frame-level features from CLIP
+  Contains precomputed feature matrices used for fMRI encoding:  
+  - `cavmae_av_embeddings.mat`: Audiovisual embeddings from CAV-MAE  
+  - `vision_clip_features.mat`: Visual frame-level features from CLIP  
   - `features_per_sec.mat`: BEATs-based audio tag probabilities per second
 
+- **`feature_extraction/`**  
+  Contains Python scripts for feature extraction:  
+  - `beats_extractor.py`: Audio feature extraction using BEATs  
+  - `clip_extractor.py`: Visual feature extraction using CLIP  
+  - `cav_mae_extractor.py`: Audiovisual feature extraction using CAV-MAE
+
 - **`notebooks/`**  
-  Contains all major Jupyter notebooks for feature extraction and brain encoding:
-  - `beats.ipynb`: Audio tag prediction using BEATs
-  - `clip.ipynb`: Visual feature extraction using CLIP
-  - `cavmae_av_feature_extraction.ipynb`: Audio-visual embedding extraction using CAV-MAE
-  - `Brain_CLIP_BEATS.ipynb`: Linear encoding with concatenated CLIP+BEATs features
-  - `Brain_CLIP_BEATS_Delay.ipynb`: Delay analysis with shifted feature windows
-  - `Brain_AudioVisual.ipynb`: Encoding using fused audiovisual features (CAV-MAE)
+  Contains all major Jupyter notebooks for feature extraction and brain encoding:  
+  - `beats_feature_extraction.ipynb`: Audio tag extraction using BEATs  
+  - `clip_feature_extraction.ipynb`: Visual feature extraction using CLIP  
+  - `cavmae_av_feature_extraction.ipynb`: Audiovisual embedding extraction using CAV-MAE  
+  - `Brain_CLIP_BEATS_feature_extraction.ipynb`: Linear encoding with concatenated CLIP+BEATs features  
+  - `Brain_CLIP_BEATS_Delay.ipynb`: Delay analysis with shifted feature windows  
+  - `Brain_CAV_MAE_feature_extraction.ipynb`: Encoding using fused audiovisual features (CAV-MAE)  
   - `fMRI_Encoding_LinearRidge.ipynb`: General encoding evaluation and correlation analysis
 
 - **`surfaces/`**  
-  Contains cortical surface `.gii` files with voxel-wise encoding results:
-  - `r_values.LH.func.gii`, `r_values.RH.func.gii`: Correlation maps for CLIP+BEATs model
+  Contains cortical surface `.gii` files with voxel-wise encoding results:  
+  - `r_values_LH.func.gii`, `r_values_RH.func.gii`: Correlation maps for CLIP+BEATs model  
   - `r_values_audioVisual.LH.func.gii`, `r_values_audioVisual.RH.func.gii`: Correlation maps for CAV-MAE model
 
 - **`Final_Report.pdf`**  
@@ -71,7 +76,6 @@ This repository is organized into the following folders:
 
 - **`README.md`**  
   This file. Provides a summary of the project and explains the structure of the repository.
-
 
 ---
 
