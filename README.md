@@ -79,6 +79,14 @@ This repository is organized into the following folders:
 
 ---
 
+## My Contributions
+This project was developed as a team of three. My key contributions included:
+
+- Implemented **CAV-MAE feature extraction** for audio data.  
+- Developed the **fMRI alignment pipeline**, ensuring synchronization between neural and audio features.
+- Contributed to **other areas of feature extraction and analysis** to support teammates’ work.   
+- Co-authored the **final project report**, including methodology and results.  
+
 
 
 
